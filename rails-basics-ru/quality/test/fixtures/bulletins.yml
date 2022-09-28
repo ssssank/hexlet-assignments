@@ -1,0 +1,17 @@
+one:
+  id: 1
+  title: title1
+  body: body1
+  published: true
+
+two:
+  id: 2
+  title: title2
+  body: body2
+  published: true
+
+three:
+  id: 3
+  title: title3
+  body: body3
+  published: false
