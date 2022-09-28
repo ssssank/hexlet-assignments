@@ -1,0 +1,24 @@
+h1
+  = @task.name
+p
+  = @task.description
+p
+  | Status: 
+  = @task.status
+small
+  | Completed: 
+  = @task.completed
+br
+small
+  | Performer: 
+  = @task.performer
+br
+small
+  | Creator: 
+  = @task.creator
+  i
+    = @task.created_at.in_time_zone('Moscow').strftime("%H:%m %d.%m.%y")
+hr
+= link_to 'Back', tasks_path
+= link_to 'Edit', edit_task_path(@task)
+= link_to 'Destroy', task_path(@task), method: :delete, data: { confirm: 'Are you sure?' }
