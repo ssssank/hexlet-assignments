@@ -58,7 +58,7 @@ ip_meta.lon # -77.5
     ```
 
 2. В файле *ipgeobase.gemspec* измените содержимое аналогично [sample_gem](https://github.com/hexlet-boilerplates/ruby-gem/blob/master/sample_gem.gemspec). Укажите автором себя и свой репозиторий на Github
-3. Реализуйте тесты приложения. Для мока запросов используйте библиотеку [Webmock](https://github.                  com/bblimke/webmock)
+3. Реализуйте тесты приложения. Для мока запросов используйте библиотеку [Webmock](https://github.com/bblimke/webmock)
 4. Реализуйте необходимую логику для работы гема
 5. Запушьте получившийся гем в репозиторий на Github. Убедитесь, что успешно выполняются проверки линтера и тесты в Github Actions. Добавьте в *README.md* бейдж на Github Action
 6. Добавьте ссылку на репозиторий гема в *solution*
