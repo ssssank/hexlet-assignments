@@ -1,0 +1,40 @@
+# Название вокрфлоу файла
+name: Node CI
+
+# Триггеры, когда должен выполнять воркфлоу (пуш и пулл реквесты)
+on:
+  - push
+  - pull_request
+
+# Джобы - это то, что будет выполняться в воркфлоу
+jobs:
+  # Это объект, а в качестве имени свойства - имя джобы (задачи)
+  build:
+    # Каждая задача использует какой либо образ
+    runs-on: ubuntu-latest
+    steps:
+        # Клонирование репозитория
+        # https://github.com/actions/checkout
+      - uses: actions/checkout@v2
+
+        # Экшен установки NodeJS
+        # Мы можем использовать готовый экшен или написать свой
+      - name: Use Node.js 14.x
+        # Configures the node version used on GitHub-hosted runners
+        # https://github.com/actions/setup-node
+        uses: actions/setup-node@v1
+        # Переменные, которые используются экшеном
+        with:
+          node-version: 14.x
+
+      # Наш экшен, который мы описали - это просто выполнение команды или скрипты
+      - name: npm install
+        # Вертикальная черта позволяет писать команды в новых строках
+        run: |
+          make install
+        # Можем указать переменные окружения
+        env:
+          CI: true
+      - name: Run linter
+        run: |
+          make linter

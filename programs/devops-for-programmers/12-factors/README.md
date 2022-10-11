@@ -19,7 +19,6 @@
 ## Задачи
 
 * Создайте в директории *app* приложение Strapi согласно [документации](https://strapi.io/documentation/developer-docs/latest/getting-started/quick-start.html#_1-install-strapi-and-create-a-new-project)
-* Зарегистрируйтесь на [Heroku](http://heroku.com/), если не сделали этого ранее. Пользователям из РФ необходимо [подключить VPN](https://github.com/Hexlet/hexlet-unblock) и указать другую страну
 * Установите [Heroku Cli](https://devcenter.heroku.com/articles/heroku-cli)
 * Задеплойте приложение с помощью heroku cli. Убедитесь, что приложение конфигурируется с помощью переменных окружения
 * В файле *solution* добавьте ссылку на задеплоенное приложение

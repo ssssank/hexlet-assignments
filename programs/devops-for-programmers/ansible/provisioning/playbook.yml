@@ -1,0 +1,38 @@
+- name: install app
+  hosts: all
+  tasks:
+    - name: Add gpg-key
+      apt_key:
+        url: https://keyserver.ubuntu.com/pks/lookup?op=get&fingerprint=on&search=0x1655A0AB68576280
+        id: "68576280"
+        state: present
+      become: true
+
+    - name: Add apt-rep
+      ansible.builtin.apt_repository:
+        repo: deb https://deb.nodesource.com/node_16.x focal main
+        state: present
+        filename: nodesource
+      become: true
+
+    - name: Install node and make
+      apt:
+        name:
+          - nodejs
+          - make
+        state: present
+        update_cache: true
+      become: true
+
+    - name: Init fystify
+      ansible.builtin.command:
+        cmd: npm init -y fastify
+        chdir: /vagrant
+        creates: package.json
+
+    - name: Add variable FASTIFY_ADDRESS
+      ansible.builtin.lineinfile:
+        path: /etc/environment
+        regexp: '^FASTIFY_ADDRESS='
+        line: FASTIFY_ADDRESS=0.0.0.0
+      become: true

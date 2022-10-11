@@ -1,0 +1,41 @@
+---
+# плейбук состоит из списка плеев объектов в которых описаны хосты, задачи и тд
+# https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html
+- hosts: all # Хосты для которых выполняется ansible
+  gather_facts: yes
+  remote_user: root
+
+  tasks:
+    - name: Install packages for
+      ansible.builtin.apt:
+        name: python3-pip
+        update_cache: yes
+
+    - name: Install Docker Module for Python
+      ansible.builtin.pip:
+        name: docker
+
+- name: Deploy application
+  hosts: all
+  gather_facts: no
+  remote_user: root
+  tasks:
+    - name: Run container
+      # Используем модуль community.docker.docker_container
+      # Для совместимости важно указывать полное имя модуля
+      community.docker.docker_container:
+        name: hexlet-app # Имя контейнера
+        image: hexlet/hexlet-app # Имя используемого образа
+        # Публикуемые порты. Слева порт внутри контейнера,
+        # справа порт по которому он будет доступен снаружи
+        published_ports:
+          - 80:8080
+        restart_policy: always
+        restart: yes
+        container_default_behavior: no_defaults
+        pull: yes
+        # Задаём переменные окружения внутри контейнера
+        env:
+          # Переменная server_message зашифрована с помощью Ansible Vault
+          # https://docs.ansible.com/ansible/latest/user_guide/vault.html
+          SERVER_MESSAGE: "{{ server_message }}"

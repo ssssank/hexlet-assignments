@@ -1,0 +1,56 @@
+- hosts: all
+  tasks:
+    - name: Ensure software-properties-common installed
+      become: yes
+      apt: name=software-properties-common
+
+    - name: Add repo PHP
+      ansible.builtin.apt_repository:
+        repo: ppa:ondrej/php
+        state: present
+      become: true
+   
+    - name: Install PHP 8
+      apt: 
+        name: 
+          - php8.0
+        state: present
+        update_cache: true
+      become: true
+
+    - name: install composer
+      shell: curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+      args:
+        creates: /usr/local/bin/composer
+      become: true
+
+    - name: Install extensions
+      apt:
+        pkg:
+          - php8.0-mbstring
+          - php8.0-zip
+          - php8.0-xml
+          - php8.0-curl
+          - unzip
+          - git
+          - make
+        state: present
+        update_cache: yes
+      become: true
+
+    - name: Init Laravel
+      ansible.builtin.shell: composer create-project laravel/laravel my_app
+      args:
+        chdir: /vagrant
+        creates: my_app/composer.json
+
+    - name: Init Laravel
+      ansible.builtin.shell: composer install
+      args:
+        chdir: /vagrant/my_app
+        creates: /vendor
+
+    - name: Start Laravel
+      ansible.builtin.shell: php artisan serve --host=0.0.0.0
+      args:
+        chdir: /vagrant/my_app
