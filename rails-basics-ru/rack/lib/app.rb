@@ -19,5 +19,3 @@ module App
     end
   end
 end
-
-# Rack::Handler::Thin.run App.init, :Port => 3000
