@@ -33,10 +33,6 @@
 bin/rails generate controller HomeController index --skip-routes
 ```
 
-### config/routes.rb
-
-Укажите корневую страницу на метод *index* контроллера *HomeController*.
-
 ### app/controllers/pages_controller.rb
 
 Сгенерируйте контроллер и метод *show* командой:
@@ -47,7 +43,8 @@ bin/rails generate controller Pages show --skip-routes
 
 ### config/routes.rb
 
-Добавьте ресурс *pages* с одним методом *show*.
+* Укажите корневую страницу на метод *index* контроллера *HomeController*.
+* Добавьте ресурс *pages* с одним методом *show*.
 
 ### app/views/home/index.html.erb
 
