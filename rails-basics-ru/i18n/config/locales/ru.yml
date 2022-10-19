@@ -1,0 +1,10 @@
+ru:
+  show: Показать
+  edit: Изменить
+  destroy: Удалить
+  destroy_confirmation: Вы уверены?
+  back: Назад
+  home: Домой
+  title: Домашняя страница
+  hexlet_title: "© Хекслет %{year}"
+  hexlet_logo: Hexlet logo
