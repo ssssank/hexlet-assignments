@@ -3,7 +3,7 @@
 ruby example_test.rb
 
 ## Запуск с детальным логирование выполнения
-ruby example_test.rb -v
+ruby ex=begin  =endample_test.rb -v
 
 ## Запуск с паттерном названия метода
 ruby example_test.rb -n test_one
